@@ -1,0 +1,23 @@
+<div class="corrida-container" *ngIf="!corridaAtiva">
+    <h2>Selecione sua tartaruga</h2>
+    <select *ngIf="tartarugas.length > 0" [(ngModel)]="tartarugaSelecionada">
+      <option *ngFor="let tartaruga of tartarugas" [value]="tartaruga.cor">
+        Tartaruga {{ tartaruga.cor }}
+      </option>
+    </select>
+    <br>
+    <button (click)="iniciarCorrida()">Iniciar Corrida</button>
+  </div>
+  
+  <div class="corrida-container" *ngIf="corridaAtiva">
+    <h2>Corrida em andamento...</h2>
+    <div class="pista-container">
+      <div *ngFor="let tartaruga of tartarugas" class="pista" [style.backgroundColor]="tartaruga.cor">
+        <div class="tartaruga" [style.left.%]="tartaruga.progresso">
+          🐢
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <p *ngIf="mensagemVencedor">{{ mensagemVencedor }}</p>
