@@ -1,0 +1,321 @@
+/* Main Container Styles */
+.form-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #1a1f2c, #2d3748);
+  padding: 1rem;
+}
+
+/* Card Styles */
+.registration-card {
+  width: 100%;
+  max-width: 28rem;
+  padding: 1.5rem;
+  background-color: rgba(45, 55, 72, 0.5);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(74, 85, 104, 0.6);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.close-button {
+  color: #a0aec0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #ffffff;
+}
+
+/* Form Elements */
+.form-group {
+  margin-bottom: 1.50rem;
+  margin-right: 1.50rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.required-star {
+  color: #f56565;
+  margin-left: 0.25rem;
+}
+
+/* Input Styles */
+.form-control {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(45, 55, 72, 0.5);
+  border: 1px solid #4a5568;
+  border-radius: 0.375rem;
+  color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #68d391;
+  box-shadow: 0 0 0 3px rgba(104, 211, 145, 0.25);
+}
+
+.form-control.error {
+  border-color: #f56565;
+}
+
+.form-control::placeholder {
+  color: #a0aec0;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: rgba(2, 8, 83, 1);
+  cursor: not-allowed;
+}
+
+/* Password Input Container */
+.password-container {
+  position: static;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #a0aec0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.password-toggle:hover {
+  color: #ffffff;
+}
+
+/* Radio Button Styles */
+.radio-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.radio-container {
+  display: flex;
+  color: #d5d8dd;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.radio-input {
+  accent-color: #68d391;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+}
+
+.radio-label {
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/* Checkbox Styles */
+.checkbox-container {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox-input {
+  accent-color: #68d391;
+  cursor: pointer;
+  width: 1rem;
+  height: 1rem;
+}
+
+.checkbox-container label {
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+.checkbox-container a {
+  color: #68d391;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.checkbox-container a:hover {
+  color: #9ae6b4;
+  text-decoration: underline;
+}
+
+/* Error Message */
+.error-message {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #f56565;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #28e56e;
+  color: #1e293b;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #28e56e;
+}
+
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Footer Text */
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.875rem;
+}
+
+.form-footer a {
+  color: #68d391;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.form-footer a:hover {
+  color: #9ae6b4;
+  text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .registration-card {
+    padding: 1.25rem;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+}
+
+/* For Angular Material Customization */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #4a5568;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #68d391;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-label {
+  color: #a0aec0;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #68d391;
+}
+
+::ng-deep .mat-input-element {
+  color: #ffffff;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+  background-color: #68d391;
+}
+
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #68d391;
+}
+
+::ng-deep .mat-radio-button .mat-radio-label-content {
+  color: #e2e8f0;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: #68d391;
+}
+
+::ng-deep .mat-checkbox-frame {
+  border-color: #4a5568;
+}
+
+::ng-deep .mat-snack-bar-container {
+  background-color: #2d3748;
+  color: #ffffff;
+}
+
+::ng-deep .mat-button,
+::ng-deep .mat-raised-button,
+::ng-deep .mat-stroked-button,
+::ng-deep .mat-flat-button {
+  border-radius: 0.375rem;
+}
+
+::ng-deep .mat-raised-button.mat-primary {
+  background-color: #68d391;
+  color: #1a202c;
+}
+
+::ng-deep .mat-raised-button.mat-primary:hover:not([disabled]) {
+  background-color: #48bb78;
+}
+
+::ng-deep .mat-error {
+  color: #f56565;
+}
