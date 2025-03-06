@@ -26,7 +26,18 @@ export class CorridaComponent implements OnInit {
   tartarugaSelecionada: string = '';
   mensagemVencedor: string = '';
   distanciaMaxima: number = 90; // Define a distância máxima da pista
-
+  corridaFinalizada = false;
+  venceu = false;
+  mapaCores: { [key: string]: string } = {
+    Vermelha: '#ff0000',
+    Azul: '#0000ff',
+    Verde: '#008000',
+    Amarela: '#ffff00',
+    Roxa: '#800080',
+    Laranja: '#ffa500',
+    Rosa: '#ff69b4',
+    Marron: '#8b4513'
+  };
   ngOnInit() {
     this.inicializarTartarugas();
   }
@@ -36,6 +47,24 @@ export class CorridaComponent implements OnInit {
     this.tartarugaSelecionada = this.tartarugas[Math.floor(Math.random() * this.tartarugas.length)].cor;
   }
 
+  getCorHex(cor: string): string {
+    const mapaCores: { [key: string]: string } = {
+      'Vermelha': 'red',
+      'Azul': 'blue',
+      'Verde': 'green',
+      'Amarela': 'yellow',
+      'Roxa': 'purple',
+      'Laranja': 'orange',
+      'Rosa': 'pink',
+      'Marron': 'brown'
+    };
+    return mapaCores[cor] || 'gray';
+  }
+  
+  getContrasteCor(cor: string): string {
+    const coresClaras = ['Amarela', 'Rosa'];
+    return coresClaras.includes(cor) ? 'black' : 'white';
+  }
   iniciarCorrida() {
     if (!this.tartarugaSelecionada) {
       alert('Selecione uma tartaruga antes de iniciar a corrida!');
@@ -85,5 +114,18 @@ export class CorridaComponent implements OnInit {
     } else {
       this.mensagemVencedor = `A tartaruga mais lenta foi a de cor ${vencedora.cor}. Tente novamente!`;
     }
+  }
+
+  selecionarTartaruga(cor: string) {
+    this.tartarugaSelecionada = cor;
+  }
+  
+  finalizarCorrida(vencedor: string) {
+    this.venceu = this.tartarugaSelecionada === vencedor;
+    this.corridaFinalizada = true;
+  }
+  
+  fecharModal() {
+    this.corridaFinalizada = false;
   }
 }
