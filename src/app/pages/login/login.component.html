@@ -2,11 +2,12 @@
     <h2>Login</h2>
     <form (submit)="login()">
       <label>Email:</label>
-      <input type="email" [(ngModel)]="email" name="email" required /> 
-      
+      <input type="email" [(ngModel)]="email" name="email" required />
+
       <label>Senha:</label>
       <input type="password" [(ngModel)]="password" name="password" required />
-      
+
+      <label>Não tem uma conta? <a href="cadastro">Cadastre-se!</a></label>
       <button type="submit">Entrar</button>
     </form>
     <p *ngIf="errorMessage">{{ errorMessage }}</p>

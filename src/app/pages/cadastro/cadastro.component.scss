@@ -99,21 +99,35 @@
 /* Password Input Container */
 .password-container {
   position: static;
+<<<<<<< Updated upstream
+=======
+  display: flex;
+  align-items: center;
+>>>>>>> Stashed changes
 }
 
 .password-toggle {
   position: absolute;
   right: 0.75rem;
+<<<<<<< Updated upstream
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   color: #a0aec0;
+=======
+  size: 2rem;
+  background: solid;
+  border: solid;
+  color: #ffffff;
+  font-size: 1.75rem;
+>>>>>>> Stashed changes
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .password-toggle:hover {
+<<<<<<< Updated upstream
   color: #ffffff;
 }
 
@@ -144,6 +158,63 @@
   cursor: pointer;
 }
 
+=======
+  color: #2d374880;
+}
+
+lucide-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Estilizando o select */
+.form-control-custom-select {
+  width: 40%;
+  height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(45, 55, 72, 0.5);
+  border: 1px solid #4a5568;
+  border-radius: 0.375rem;
+  color: #ffffff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+/* Cor do 'Selecione' placeholder **Não funciona** */
+// .form-control-custom-select option[value=""] {
+  //   color: #a0aec0;
+  // }
+
+/* Quando o select estiver em foco */
+.form-control-custom-select:focus {
+  outline: none;
+  border-color: #68d391;
+  box-shadow: 0 0 0 3px rgba(104, 211, 145, 0.25);
+}
+
+.form-control-custom-select option {
+  background-color: rgba(45, 55, 72, 0.8);
+  color: #e2e8f0;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover nas opções **não funciona** */
+.form-control-custom-select option:hover {
+  background-color: #68d391;
+  color: #1a202c;
+}
+
+/* Estilo do campo select quando o mouse passa sobre uma opção */
+.form-control-custom-select:hover {
+  border-color: #68d391;
+}
+
+/* Estilo de borda de erro */
+.form-control-custom-select.error {
+  border-color: #f56565;
+}
+
+
+>>>>>>> Stashed changes
 /* Checkbox Styles */
 .checkbox-container {
   display: flex;
@@ -175,6 +246,43 @@
   text-decoration: underline;
 }
 
+<<<<<<< Updated upstream
+=======
+/* Modal */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  max-width: 600px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+>>>>>>> Stashed changes
 /* Error Message */
 .error-message {
   margin-top: 0.25rem;
@@ -204,6 +312,32 @@
   cursor: not-allowed;
 }
 
+<<<<<<< Updated upstream
+=======
+/* Redirect to Login */
+.login-container {
+  text-align: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-container label {
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+.login-container a {
+  color: #68d391;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.login-container a:hover {
+  color: #9ae6b4;
+  text-decoration: underline;
+}
+>>>>>>> Stashed changes
 /* Footer Text */
 .form-footer {
   margin-top: 1.5rem;
