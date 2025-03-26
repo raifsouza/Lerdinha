@@ -1,23 +1,39 @@
-<div class="corrida-container" *ngIf="!corridaAtiva">
-    <h2>Selecione sua tartaruga</h2>
-    <select *ngIf="tartarugas.length > 0" [(ngModel)]="tartarugaSelecionada">
-      <option *ngFor="let tartaruga of tartarugas" [value]="tartaruga.cor">
-        Tartaruga {{ tartaruga.cor }}
-      </option>
-    </select>
-    <br>
-    <button (click)="iniciarCorrida()">Iniciar Corrida</button>
+<div class="container"  *ngIf="!corridaAtiva">
+  <div class="selecao-tartaruga">
+    <h2>Selecione sua tartaruga:</h2>
+    <div class="tartarugas">
+      <button
+      *ngFor="let cor of cores"
+      [ngStyle]="{ 'background-color': mapaCores[cor], 'color': 'white' }"
+      [class.selecionado]="tartarugaSelecionada === cor"
+      (click)="selecionarTartaruga(cor)">
+      {{ cor }}
+    </button>
+    </div>
   </div>
-  
-  <div class="corrida-container" *ngIf="corridaAtiva">
-    <h2>Corrida em andamento...</h2>
-    <div class="pista-container">
-      <div *ngFor="let tartaruga of tartarugas" class="pista" [style.backgroundColor]="tartaruga.cor">
-        <div class="tartaruga" [style.left.%]="tartaruga.progresso">
-          🐢
-        </div>
+  <button (click)="iniciarCorrida()">Iniciar Corrida</button>
+</div>
+
+
+
+<div class="corrida-container" *ngIf="corridaAtiva">
+  <h2>Corrida em andamento...</h2>
+  <div class="pista-container">
+    <div *ngFor="let tartaruga of tartarugas" class="pista" [style.backgroundColor]="getCorHex(tartaruga.cor)">
+      <span class="tartaruga-label" [style.color]="getContrasteCor(tartaruga.cor)">{{ tartaruga.cor }}</span>
+      <div class="tartaruga" [style.left.%]="tartaruga.progresso">
+        🐢
       </div>
     </div>
   </div>
-  
-  <p *ngIf="mensagemVencedor">{{ mensagemVencedor }}</p>
+</div>
+
+<div *ngIf="corridaFinalizada" class="modal">
+  <div class="modal-content">
+    <h2>{{ venceu ? 'Parabéns!' : 'Que pena!' }}</h2>
+    <p>
+      {{ venceu ? 'Sua tartaruga venceu a corrida! 🎉' : 'Infelizmente sua tartaruga perdeu. 😢' }}
+    </p>
+    <button (click)="fecharModal()">OK</button>
+  </div>
+</div>

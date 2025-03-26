@@ -99,35 +99,21 @@
 /* Password Input Container */
 .password-container {
   position: static;
-<<<<<<< Updated upstream
-=======
-  display: flex;
-  align-items: center;
->>>>>>> Stashed changes
 }
 
 .password-toggle {
   position: absolute;
   right: 0.75rem;
-<<<<<<< Updated upstream
   top: 50%;
   transform: translateY(-50%);
   background: transparent;
   border: none;
   color: #a0aec0;
-=======
-  size: 2rem;
-  background: solid;
-  border: solid;
-  color: #ffffff;
-  font-size: 1.75rem;
->>>>>>> Stashed changes
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .password-toggle:hover {
-<<<<<<< Updated upstream
   color: #ffffff;
 }
 
@@ -158,63 +144,49 @@
   cursor: pointer;
 }
 
-=======
-  color: #2d374880;
-}
-
-lucide-icon {
-  width: 20px;
-  height: 20px;
-}
-
-/* Estilizando o select */
-.form-control-custom-select {
-  width: 40%;
+/* Estilização do Select */
+.gender-custom-select {
+  width: 45%;
   height: 2.5rem;
   padding: 0.5rem 0.75rem;
-  background-color: rgba(45, 55, 72, 0.5);
-  border: 1px solid #4a5568;
+  background-color: rgba(45, 55, 72, 0.5); /* Fundo semi-transparente */
+  border: 1px solid #4a5568; /* Borda sutil */
   border-radius: 0.375rem;
-  color: #ffffff;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  color: #ffffff; /* Texto branco */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
-/* Cor do 'Selecione' placeholder **Não funciona** */
-// .form-control-custom-select option[value=""] {
-  //   color: #a0aec0;
-  // }
 
-/* Quando o select estiver em foco */
-.form-control-custom-select:focus {
+/* Placeholder (usando disabled) */
+.gender-custom-select option[disabled] {
+  color: #a0aec0;
+}
+
+/* Foco no campo */
+.gender-custom-select:focus {
   outline: none;
   border-color: #68d391;
   box-shadow: 0 0 0 3px rgba(104, 211, 145, 0.25);
+  background-color: rgba(45, 55, 72, 0.8); /* Destaca ao focar */
 }
 
-.form-control-custom-select option {
-  background-color: rgba(45, 55, 72, 0.8);
-  color: #e2e8f0;
-  padding: 0.5rem;
-  transition: background-color 0.3s ease;
+/* Hover */
+.gender-custom-select:hover {
+  background-color: rgba(45, 55, 72, 0.7);
 }
 
-/* Hover nas opções **não funciona** */
-.form-control-custom-select option:hover {
+/* Estilizando as opções do dropdown */
+.gender-custom-select option {
+  background-color: #2d3748;
+  color: #ffffff;
+}
+
+/* Hover na opção */
+.gender-custom-select option:hover {
   background-color: #68d391;
   color: #1a202c;
 }
-
-/* Estilo do campo select quando o mouse passa sobre uma opção */
-.form-control-custom-select:hover {
-  border-color: #68d391;
-}
-
-/* Estilo de borda de erro */
-.form-control-custom-select.error {
-  border-color: #f56565;
-}
-
-
->>>>>>> Stashed changes
 /* Checkbox Styles */
 .checkbox-container {
   display: flex;
@@ -246,8 +218,6 @@ lucide-icon {
   text-decoration: underline;
 }
 
-<<<<<<< Updated upstream
-=======
 /* Modal */
 .modal {
   display: flex;
@@ -282,7 +252,6 @@ lucide-icon {
   font-weight: bold;
 }
 
->>>>>>> Stashed changes
 /* Error Message */
 .error-message {
   margin-top: 0.25rem;
@@ -312,8 +281,6 @@ lucide-icon {
   cursor: not-allowed;
 }
 
-<<<<<<< Updated upstream
-=======
 /* Redirect to Login */
 .login-container {
   text-align: center;
@@ -337,7 +304,6 @@ lucide-icon {
   color: #9ae6b4;
   text-decoration: underline;
 }
->>>>>>> Stashed changes
 /* Footer Text */
 .form-footer {
   margin-top: 1.5rem;
