@@ -11,11 +11,11 @@
     </button>
     </div>
   </div>
-  <button (click)="iniciarCorrida()">Iniciar Corrida</button>
+  <button (click)="iniciarCorrida()" [disabled]="!tartarugaSelecionada">Iniciar Corrida</button>
 </div>
 
 
-
+<div *ngIf="!corridaFinalizada" class="modal">
 <div class="corrida-container" *ngIf="corridaAtiva">
   <h2>Corrida em andamento...</h2>
   <div class="pista-container">
@@ -26,6 +26,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <div *ngIf="corridaFinalizada" class="modal">

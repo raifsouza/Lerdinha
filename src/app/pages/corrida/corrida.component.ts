@@ -23,7 +23,7 @@ export class CorridaComponent implements OnInit {
   subscription!: Subscription;
   tempoMaximo: number = 60000; // 60 segundos
   tempoDecorrido: number = 0;
-  tartarugaSelecionada: string = '';
+  tartarugaSelecionada: string | null = null; 
   mensagemVencedor: string = '';
   distanciaMaxima: number = 90; // Define a distância máxima da pista
   corridaFinalizada = false;
@@ -65,6 +65,7 @@ export class CorridaComponent implements OnInit {
     const coresClaras = ['Amarela', 'Rosa'];
     return coresClaras.includes(cor) ? 'black' : 'white';
   }
+  
   iniciarCorrida() {
     if (!this.tartarugaSelecionada) {
       alert('Selecione uma tartaruga antes de iniciar a corrida!');
@@ -108,13 +109,16 @@ export class CorridaComponent implements OnInit {
     this.corridaAtiva = false;
     this.tartarugas.sort(() => Math.random() - 0.5); // Mistura as tartarugas para evitar sempre a mesma vencedora
     const vencedora = this.tartarugas[this.tartarugas.length - 1];
-    
+  
     if (vencedora.cor === this.tartarugaSelecionada) {
       this.mensagemVencedor = 'Parabéns! Você venceu!';
     } else {
       this.mensagemVencedor = `A tartaruga mais lenta foi a de cor ${vencedora.cor}. Tente novamente!`;
     }
+  
+    this.finalizarCorrida(vencedora.cor);
   }
+  
 
   selecionarTartaruga(cor: string) {
     this.tartarugaSelecionada = cor;
@@ -122,10 +126,12 @@ export class CorridaComponent implements OnInit {
   
   finalizarCorrida(vencedor: string) {
     this.venceu = this.tartarugaSelecionada === vencedor;
+    this.corridaAtiva = true;
     this.corridaFinalizada = true;
   }
   
   fecharModal() {
     this.corridaFinalizada = false;
+    this.corridaAtiva = false;
   }
 }
