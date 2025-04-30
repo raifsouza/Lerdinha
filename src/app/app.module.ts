@@ -12,6 +12,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AdminPromocoesModule } from './pages/admin-promocoes/admin-promocoes.module';
+import { ModalModule } from 'ngx-bootstrap/modal'
 @NgModule({
   declarations:[
   ],
@@ -23,12 +25,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
+    AdminPromocoesModule,
     MatCardModule,
     MatRadioModule,
     MatCheckboxModule,
     MatIconModule,
     MatSnackBarModule,
     MatFormFieldModule,
+    ModalModule.forRoot(),
   ],
   providers: [],
 })
