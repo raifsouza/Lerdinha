@@ -1,0 +1,60 @@
+<div class="painel-container">
+  <h2 class="painel-titulo">🎮 Painel do Jogador</h2>
+
+  <div class="painel-saldo">💳 Saldo Atual: <strong>R${{ saldo.toFixed(2) }}</strong></div>
+
+  <div class="painel-bloco">
+    <label for="pix" class="painel-label">🔑 Chave PIX</label>
+    <input id="pix" type="text" class="painel-input" [(ngModel)]="chavePix" placeholder="Informe sua chave PIX" />
+    <button class="painel-botao" (click)="salvarChavePix()">Salvar Chave</button>
+  </div>
+
+  <div class="painel-bloco">
+    <h3 class="painel-subtitulo">📜 Histórico de Apostas</h3>
+    <table class="painel-tabela" *ngIf="apostas.length > 0; else semApostas">
+      <thead>
+        <tr>
+          <th>Corrida</th>
+          <th>Tartaruga</th>
+          <th>Resultado</th>
+          <th>Prêmio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let aposta of apostas">
+          <td>{{ aposta.corridaId }}</td>
+          <td>{{ aposta.tartaruga }}</td>
+          <td [class.vencedora]="aposta.vencedora" [class.perdedora]="!aposta.vencedora">
+            {{ aposta.vencedora ? 'Ganhou' : 'Perdeu' }}
+          </td>
+          <td>R${{ aposta.premio }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #semApostas>
+      <p class="painel-mensagem">Nenhuma aposta encontrada.</p>
+    </ng-template>
+  </div>
+
+  <div class="painel-bloco">
+    <button class="painel-botao-principal" [disabled]="!chavePix" (click)="abrirModal()">
+      Solicitar Resgate via PIX
+    </button>
+  </div>
+
+  <div class="custom-modal-backdrop" *ngIf="exibirModalConfirmacao">
+    <div class="custom-modal-content">
+      <h5>Confirmar Resgate</h5>
+      <p>Deseja solicitar o resgate para a chave PIX:</p>
+      <p><strong>{{ chavePix }}</strong></p>
+      
+      <div class="d-flex justify-content-around mt-3">
+        <button class="btn btn-success" (click)="confirmarResgatePix()">Confirmar</button>
+        <button class="btn btn-secondary" (click)="fecharModalConfirmacao()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+

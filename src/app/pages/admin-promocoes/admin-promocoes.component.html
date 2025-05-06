@@ -1,0 +1,24 @@
+<h2>Painel de Promoções</h2>
+
+<form (ngSubmit)="criarPromo()" #promoForm="ngForm">
+  <label>Título:
+    <input type="text" name="titulo" [(ngModel)]="promo.titulo" required />
+  </label>
+  <label>Taxa Prêmio (%):
+    <input type="number" name="taxaPremio" [(ngModel)]="promo.taxaPremio" step="0.01" required />
+  </label>
+  <label>Expira em:
+    <input type="date" name="expiraEm" [(ngModel)]="promo.expiraEm" required />
+  </label>
+  <button type="submit">Criar Promoção</button>
+</form>
+
+<hr />
+
+<h3>Promoções Ativas</h3>
+<ul>
+  <li *ngFor="let p of promocoes">
+    {{ p.titulo }} - {{ p.taxaPremio * 100 }}% até {{ p.expiraEm | date:'shortDate' }}
+    <button (click)="desativar(p.id)">Desativar</button>
+  </li>
+</ul>

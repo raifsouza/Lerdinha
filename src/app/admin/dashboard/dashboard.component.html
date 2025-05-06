@@ -1,0 +1,47 @@
+<!-- src/app/admin/dashboard/dashboard.component.html -->
+<div class="container">
+    <h2>Painel Administrativo - Corridas</h2>
+  
+    <button class="btn btn-primary mb-3" (click)="criarCorrida()">Criar Nova Corrida</button>
+  
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Status</th>
+          <th>Promoção</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let corrida of corridas">
+          <td>{{ corrida.id }}</td>
+          <td>{{ corrida.status }}</td>
+          <td>{{ corrida.promocaoAtiva ? 'Ativa' : 'Inativa' }}</td>
+          <td>
+            <button class="btn btn-success btn-sm me-2" 
+                    [disabled]="corrida.status === 'finalizada'"
+                    (click)="finalizarCorrida(corrida.id)">
+              Finalizar
+            </button>
+            <button class="btn btn-warning btn-sm" (click)="togglePromocao(corrida)">
+              {{ corrida.promocaoAtiva ? 'Desativar Promo' : 'Ativar Promo' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ng-template #promoModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Promoção Ativa!</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.hide()"></button>
+    </div>
+    <div class="modal-body">
+      <p>A corrida #{{ corridaPromocional?.id }} está com uma promoção ativa!</p>
+      <p>Aproveite para apostar com benefícios exclusivos.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary" (click)="modal.hide()">Ok</button>
+    </div>
+  </ng-template>

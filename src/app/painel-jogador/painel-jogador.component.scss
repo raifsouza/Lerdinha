@@ -1,0 +1,89 @@
+.painel-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: #1e1e2f;
+    padding: 30px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .painel-titulo {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .painel-saldo {
+    font-size: 18px;
+    margin-bottom: 25px;
+  }
+  
+  .painel-bloco {
+    margin-bottom: 25px;
+  }
+  
+  .painel-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .painel-input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .painel-botao,
+  .painel-botao-principal {
+    width: 100%;
+    padding: 10px;
+    background-color: #00b894;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .painel-botao:hover,
+  .painel-botao-principal:hover {
+    background-color: #019170;
+  }
+  
+  .painel-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .painel-tabela th,
+  .painel-tabela td {
+    padding: 10px;
+    border-bottom: 1px solid #555;
+  }
+  
+  .vencedora {
+    color: #00ff99;
+    font-weight: bold;
+  }
+  
+  .perdedora {
+    color: #ff7675;
+  }
+  
+  .painel-mensagem {
+    font-style: italic;
+    color: #ccc;
+  }
+  
+  .painel-subtitulo {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  

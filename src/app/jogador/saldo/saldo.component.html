@@ -1,0 +1,28 @@
+<div class="container mt-4">
+    <h2>Bem-vindo, {{ nome }}</h2>
+    <!-- <h4>Seu saldo: R$ {{ saldo | number:'1.2-2' }}</h4> -->
+  
+    <hr />
+  
+    <h5>Histórico de Apostas</h5>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Corrida</th>
+          <th>Tartaruga</th>
+          <th>Valor Apostado</th>
+          <th>Prêmio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let aposta of apostas">
+          <td>{{ aposta.corridaId }}</td>
+          <td>{{ aposta.tartaruga }}</td>
+          <td>R$ {{ aposta.valor }}</td>
+          <td *ngIf="aposta.premio">R$ {{ aposta.premio }}</td>
+          <td *ngIf="!aposta.premio">-</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

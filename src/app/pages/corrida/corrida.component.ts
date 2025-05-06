@@ -107,7 +107,7 @@ export class CorridaComponent implements OnInit {
       this.subscription.unsubscribe();
     }
     this.corridaAtiva = false;
-    this.tartarugas.sort(() => Math.random() - 0.5); // Mistura as tartarugas para evitar sempre a mesma vencedora
+    this.tartarugas.sort(() => Math.random() - 0.5); 
     const vencedora = this.tartarugas[this.tartarugas.length - 1];
   
     if (vencedora.cor === this.tartarugaSelecionada) {
