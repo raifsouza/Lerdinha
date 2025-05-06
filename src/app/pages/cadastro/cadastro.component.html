@@ -7,15 +7,15 @@
     <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
       <!-- Nome -->
       <div class="form-group">
-        <label class="form-label" for="firstName">Nome <span class="required-star">*</span></label>
-        <input type="text" id="firstName" class="form-control" formControlName="firstName" placeholder="Digite seu nome">
+        <label class="form-label" for="primeiroNome">Nome <span class="required-star">*</span></label>
+        <input type="text" id="primeiroNome" class="form-control" formControlName="primeiroNome" placeholder="Digite seu nome">
         <!-- <p class="error-message" *ngIf="isFieldInvalid('firstName')">Nome é obrigatório.</p> -->
       </div>
 
       <!-- Sobrenome -->
       <div class="form-group">
-        <label class="form-label" for="lastName">Sobrenome <span class="required-star">*</span></label>
-        <input type="text" id="lastName" class="form-control" formControlName="lastName" placeholder="Digite seu sobrenome">
+        <label class="form-label" for="ultimoNome">Sobrenome <span class="required-star">*</span></label>
+        <input type="text" id="ultimoNome" class="form-control" formControlName="ultimoNome" placeholder="Digite seu sobrenome">
         <!-- <p class="error-message" *ngIf="isFieldInvalid('lastName')">Sobrenome é obrigatório.</p> -->
       </div>
 
@@ -40,7 +40,7 @@
       <!-- Select Gênero -->
       <div class="form-group">
         <label class="form-label">Gênero <span class="required-star">*</span></label>
-        <select class="gender-custom-select" formControlName="gender">
+        <select class="gender-custom-select" formControlName="genero">
           <option value="" disabled selected>Selecione</option>
           <option value="masculino">Masculino</option>
           <option value="feminino">Feminino</option>
@@ -51,8 +51,8 @@
 
       <!-- Celular -->
       <div class="form-group">
-        <label class="form-label" for="phone">Celular com DDD <span class="required-star">*</span></label>
-        <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="(00) 0 0000-0000" mask="(00) 0 0000-0000" [dropSpecialCharacters]="true">
+        <label class="form-label" for="telefone">Celular com DDD <span class="required-star">*</span></label>
+        <input type="text" id="telefone" class="form-control" formControlName="telefone" placeholder="(00) 0 0000-0000" mask="(00) 0 0000-0000" [dropSpecialCharacters]="true">
         <!-- <p class="error-message" *ngIf="isFieldInvalid('phone')">Formato inválido.</p> -->
       </div>
 
@@ -67,14 +67,8 @@
       <div class="form-group">
         <label class="form-label" for="password">Senha <span class="required-star">*</span></label>
         <div class="password-container">
-          <input
-          [type]="showPassword ? 'text' : 'password'"
-          id="password"
-          class="form-control"
-          formControlName="password"
-          placeholder="Digite sua senha">
-
-          <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+          <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control" formControlName="password" placeholder="Digite sua senha">
+          <button type="button" class="password-toggle" (click)="botaoVisibilidadeSenha()">
             <!-- <lucide-icon [lucide]="showPassword ? icons.eyeOff : icons.eye"></lucide-icon> -->
           </button>
         </div>
@@ -86,7 +80,9 @@
         <label class="form-label" for="confirmPassword">Confirmar Senha <span class="required-star">*</span></label>
         <div class="password-container">
           <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" class="form-control" formControlName="confirmPassword" placeholder = "Digite a senha novamente">
-          <!--implementar visualização de senha aqui-->
+          <button type="button" class="password-toggle" (click)="botaoVisibilidadeConfirmacaoSenha()">
+            <!-- <lucide-icon [lucide]="showPassword ? icons.eyeOff : icons.eye"></lucide-icon> -->
+          </button>
         </div>
         <p class="error-message" *ngIf="cadastroForm.hasError('passwordMismatch')">As senhas não coincidem.</p>
       </div>

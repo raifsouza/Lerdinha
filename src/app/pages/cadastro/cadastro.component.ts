@@ -20,25 +20,31 @@ import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
   ],
 })
 
-// export class CadastroComponent implements OnInit {
-// =======
-//   imports: [CommonModule, ReactiveFormsModule, NgxMaskDirective, LucideAngularModule],
-//   templateUrl: './cadastro.component.html',
-//   styleUrls: ['./cadastro.component.scss'],
-//   encapsulation: ViewEncapsulation.None,
-//   providers: [provideNgxMask({
-//       dropSpecialCharacters: false,
-//       validation: true,
-//     })
-//   ],
-// })
-
 export class CadastroComponent implements OnInit {
   cadastroForm!: FormGroup;
   showPassword: boolean = false;
   showConfirmPassword: boolean = false;
   cpfStatus: string | null = null;
   mostrarModal = false;
+
+  ngOnInit(): void {
+    this.cadastroForm = this.fb.group(
+      {
+        primeiroNome: ['', [Validators.required, Validators.minLength(2)]],
+        ultimoNome: ['', [Validators.required, Validators.minLength(2)]],
+        cpf: ['', Validators.required],
+        genero: ['', Validators.required],
+        telefone: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        dataNascimento: ['', [Validators.required]],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
+        confirmPassword: ['', Validators.required],
+        cep: ['', Validators.pattern],
+        terms: [false, Validators.requiredTrue]
+      },
+      { validators: this.validarSenhasIguais }
+    );
+  }
 
   abrirModal(event: Event) {
     event.preventDefault();
@@ -57,7 +63,6 @@ export class CadastroComponent implements OnInit {
       dataNascimento: ['', [Validators.required]],
 
     })
-
   }
 
   async validarCpf(): Promise<void> {
@@ -84,43 +89,19 @@ export class CadastroComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.cadastroForm = this.fb.group(
-      {
-        firstName: ['', [Validators.required, Validators.minLength(2)]],
-        lastName: ['', [Validators.required, Validators.minLength(2)]],
-        cpf: ['', Validators.required],
-        gender: ['', Validators.required],
-        phone: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
-        confirmPassword: ['', Validators.required],
-        cep: ['', Validators.pattern],
-        terms: [false, Validators.requiredTrue]
-      },
-      { validators: this.passwordMatchValidator }
-    );
-  }
-
-  passwordMatchValidator(form: FormGroup) {
+  validarSenhasIguais(form: FormGroup) {
     const password = form.get('password')?.value;
     const confirmPassword = form.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
-  togglePasswordVisibility(): void {
+  botaoVisibilidadeSenha(): void {
     this.showPassword = !this.showPassword;
   }
 
-  toggleConfirmPasswordVisibility(): void {
+  botaoVisibilidadeConfirmacaoSenha(): void {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
-
-
-  // isFieldInvalid(field: string): boolean {
-  //   const control = this.registerForm.get(field);
-  //   return !!control?.invalid && (control?.touched || control?.dirty);
-  // }
 
   onSubmit(): void {
     if (this.cadastroForm.valid) {
