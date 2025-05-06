@@ -2,16 +2,11 @@
     <h2 class="login">Login</h2>
 
     <form (submit)="login()">
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="email" name="email" required />
 
-      <label class="texto">Email:</label>
-
-      <input type="email" [(ngModel)]="email" name="email" required /> 
-      
-      <label class="texto">Senha:</label>
-
+      <label>Senha:</label>
       <input type="password" [(ngModel)]="password" name="password" required />
-
-      <p class="texto"><a href="/esqueci-senha" class="clicavel">Esqueci minha senha</a></p>
 
       <button type="submit">Entrar</button>
     </form>

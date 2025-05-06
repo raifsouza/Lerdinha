@@ -4,55 +4,63 @@
       <h1 class="card-title">Cadastre-se</h1>
     </div>
 
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
       <!-- Nome -->
       <div class="form-group">
-        <label class="form-label" for="firstName">Nome <span class="required-star">*</span></label>
-        <input type="text" id="firstName" class="form-control" formControlName="firstName" placeholder="Digite seu nome">
-        <p class="error-message" *ngIf="isFieldInvalid('firstName')">Nome é obrigatório.</p>
+        <label class="form-label" for="primeiroNome">Nome <span class="required-star">*</span></label>
+        <input type="text" id="primeiroNome" class="form-control" formControlName="primeiroNome" placeholder="Digite seu nome">
+        <!-- <p class="error-message" *ngIf="isFieldInvalid('firstName')">Nome é obrigatório.</p> -->
       </div>
 
       <!-- Sobrenome -->
       <div class="form-group">
-        <label class="form-label" for="lastName">Sobrenome <span class="required-star">*</span></label>
-        <input type="text" id="lastName" class="form-control" formControlName="lastName" placeholder="Digite seu sobrenome">
-        <p class="error-message" *ngIf="isFieldInvalid('lastName')">Sobrenome é obrigatório.</p>
+        <label class="form-label" for="ultimoNome">Sobrenome <span class="required-star">*</span></label>
+        <input type="text" id="ultimoNome" class="form-control" formControlName="ultimoNome" placeholder="Digite seu sobrenome">
+        <!-- <p class="error-message" *ngIf="isFieldInvalid('lastName')">Sobrenome é obrigatório.</p> -->
       </div>
 
       <!-- CPF -->
       <div class="form-group">
         <label class="form-label" for="cpf">CPF <span class="required-star">*</span></label>
-        <input type="text" id="cpf" class="form-control" formControlName="cpf" placeholder="000.000.000-00">
-        <p class="error-message" *ngIf="isFieldInvalid('cpf')">CPF inválido.</p>
+        <input type="text" id="cpf" class="form-control" formControlName="cpf" placeholder ="000.000.000-00" (blur)="validarCpf()" mask="000.000.000-00" [dropSpecialCharacters]="true">
+        <!-- <p class="error-message" *ngIf="isFieldInvalid('cpf')">CPF inválido.</p> -->
       </div>
 
-      <!-- Gênero -->
+      <!-- Data de Nascimento -->
+      <div class="form-group">
+        <label class="form-label" for="dataNascimento">Data de Nascimento <span class="text-danger"></span></label>
+        <input id="dataNascimento" type="date" formControlName="dataNascimento" class="form-control" (blur)="validarDataNascimento()">
+        <div *ngIf="cadastroForm.get('dataNascimento')?.invalid && cadastroForm.get('dataNascimento')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('dataNascimento')?.errors?.['required']">Campo obrigatório.</small>
+          <small *ngIf="cadastroForm.get('dataNascimento')?.errors?.['invalidDate']">Data inválida.</small>
+          <small *ngIf="cadastroForm.get('dataNascimento')?.errors?.['underAge']">Você deve ter pelo menos 18 anos.</small>
+        </div>
+      </div>
+
+      <!-- Select Gênero -->
       <div class="form-group">
         <label class="form-label">Gênero <span class="required-star">*</span></label>
-        <div class="radio-group">
-          <div class="radio-container">
-            <input type="radio" id="masculino" name="gender" value="masculino" formControlName="gender">
-            <label for="masculino">Masculino</label>
-          </div>
-          <div class="radio-container">
-            <input type="radio" id="feminino" name="gender" value="feminino" formControlName="gender">
-            <label for="feminino">Feminino</label>
-          </div>
-        </div>
+        <select class="gender-custom-select" formControlName="genero">
+          <option value="" disabled selected>Selecione</option>
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
+          <option value="outro">Outro</option>
+          <option value="naoresponder">Prefiro não informar</option>
+        </select>
       </div>
 
       <!-- Celular -->
       <div class="form-group">
-        <label class="form-label" for="phone">Celular com DDD <span class="required-star">*</span></label>
-        <input type="text" id="phone" class="form-control" formControlName="phone" placeholder="(00) 0 0000-0000">
-        <p class="error-message" *ngIf="isFieldInvalid('phone')">Formato inválido.</p>
+        <label class="form-label" for="telefone">Celular com DDD <span class="required-star">*</span></label>
+        <input type="text" id="telefone" class="form-control" formControlName="telefone" placeholder="(00) 0 0000-0000" mask="(00) 0 0000-0000" [dropSpecialCharacters]="true">
+        <!-- <p class="error-message" *ngIf="isFieldInvalid('phone')">Formato inválido.</p> -->
       </div>
 
       <!-- Email -->
       <div class="form-group">
         <label class="form-label" for="email">E-mail <span class="required-star">*</span></label>
         <input type="email" id="email" class="form-control" formControlName="email" placeholder="Insira seu e-mail">
-        <p class="error-message" *ngIf="isFieldInvalid('email')">E-mail inválido.</p>
+        <!-- <p class="error-message" *ngIf="isFieldInvalid('email')">E-mail inválido.</p> -->
       </div>
 
       <!-- Senha -->
@@ -60,9 +68,11 @@
         <label class="form-label" for="password">Senha <span class="required-star">*</span></label>
         <div class="password-container">
           <input [type]="showPassword ? 'text' : 'password'" id="password" class="form-control" formControlName="password" placeholder="Digite sua senha">
-          <!--implementar visualização de senha aqui-->
+          <button type="button" class="password-toggle" (click)="botaoVisibilidadeSenha()">
+            <!-- <lucide-icon [lucide]="showPassword ? icons.eyeOff : icons.eye"></lucide-icon> -->
+          </button>
         </div>
-        <p class="error-message" *ngIf="isFieldInvalid('password')">A senha deve ter pelo menos 8 caracteres.</p>
+        <!-- <p class="error-message" *ngIf="isFieldInvalid('password')">A senha deve ter pelo menos 8 caracteres.</p> -->
       </div>
 
       <!-- Confirmar Senha -->
@@ -70,19 +80,36 @@
         <label class="form-label" for="confirmPassword">Confirmar Senha <span class="required-star">*</span></label>
         <div class="password-container">
           <input [type]="showConfirmPassword ? 'text' : 'password'" id="confirmPassword" class="form-control" formControlName="confirmPassword" placeholder = "Digite a senha novamente">
-          <!--implementar visualização de senha aqui-->
+          <button type="button" class="password-toggle" (click)="botaoVisibilidadeConfirmacaoSenha()">
+            <!-- <lucide-icon [lucide]="showPassword ? icons.eyeOff : icons.eye"></lucide-icon> -->
+          </button>
         </div>
-        <p class="error-message" *ngIf="registerForm.hasError('passwordMismatch')">As senhas não coincidem.</p>
+        <p class="error-message" *ngIf="cadastroForm.hasError('passwordMismatch')">As senhas não coincidem.</p>
       </div>
 
       <!-- Termos -->
       <div class="checkbox-container">
         <input type="checkbox" id="terms" formControlName="terms">
-        <label for="terms">Concordo com todos os <a href="#">Termos e Condições</a> e <a href="#">Diretrizes de Privacidade</a>. Declaro, ainda, ser maior de 18 anos.</label>
+        <label for="terms">Concordo com todos os <a href="#" (click)="abrirModal($event)">Termos e Condições</a> e <a href="#">Diretrizes de Privacidade</a>. Declaro, ainda, ser maior de 18 anos.</label>
+      </div>
+
+      <!-- Modal Termos -->
+      <div class="modal" *ngIf="mostrarModal">
+        <div clas="modal-content">
+          <span class="fechar" (click)="fecharModal()">X</span>
+          <h2>Termos e Condições</h2>
+          <p>Colocar os termos aqui :p</p>
+        </div>
       </div>
 
       <!-- Botão de Envio -->
-      <button type="submit" class="submit-button" [disabled]="registerForm.invalid">Cadastrar</button>
+      <button type="submit" class="submit-button" [disabled]="cadastroForm.invalid">Cadastrar</button>
+
+      <!-- Redirecionamento para tela de Login-->
+      <div class="login-container">
+        <label>Já possui uma conta? <a href="login">Faça seu login!</a></label>
+      </div>
+
     </form>
   </div>
 </div>

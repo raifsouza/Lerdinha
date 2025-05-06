@@ -144,6 +144,49 @@
   cursor: pointer;
 }
 
+/* Estilização do Select */
+.gender-custom-select {
+  width: 45%;
+  height: 2.5rem;
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(45, 55, 72, 0.5); /* Fundo semi-transparente */
+  border: 1px solid #4a5568; /* Borda sutil */
+  border-radius: 0.375rem;
+  color: #ffffff; /* Texto branco */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+/* Placeholder (usando disabled) */
+.gender-custom-select option[disabled] {
+  color: #a0aec0;
+}
+
+/* Foco no campo */
+.gender-custom-select:focus {
+  outline: none;
+  border-color: #68d391;
+  box-shadow: 0 0 0 3px rgba(104, 211, 145, 0.25);
+  background-color: rgba(45, 55, 72, 0.8); /* Destaca ao focar */
+}
+
+/* Hover */
+.gender-custom-select:hover {
+  background-color: rgba(45, 55, 72, 0.7);
+}
+
+/* Estilizando as opções do dropdown */
+.gender-custom-select option {
+  background-color: #2d3748;
+  color: #ffffff;
+}
+
+/* Hover na opção */
+.gender-custom-select option:hover {
+  background-color: #68d391;
+  color: #1a202c;
+}
 /* Checkbox Styles */
 .checkbox-container {
   display: flex;
@@ -175,6 +218,40 @@
   text-decoration: underline;
 }
 
+/* Modal */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 50%;
+  max-width: 600px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+}
+
+.fechar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
 /* Error Message */
 .error-message {
   margin-top: 0.25rem;
@@ -204,6 +281,29 @@
   cursor: not-allowed;
 }
 
+/* Redirect to Login */
+.login-container {
+  text-align: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.login-container label {
+  color: #ffffff;
+  font-size: 0.875rem;
+}
+
+.login-container a {
+  color: #68d391;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.login-container a:hover {
+  color: #9ae6b4;
+  text-decoration: underline;
+}
 /* Footer Text */
 .form-footer {
   margin-top: 1.5rem;
