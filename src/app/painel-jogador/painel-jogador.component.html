@@ -6,7 +6,7 @@
   <div class="painel-bloco">
     <label for="pix" class="painel-label">🔑 Chave PIX</label>
     <input id="pix" type="text" class="painel-input" [(ngModel)]="chavePix" placeholder="Informe sua chave PIX" />
-    <button class="painel-botao" (click)="salvarChavePix()">Salvar Chave</button>
+    <button type="button" class="painel-botao" (click)="salvarChavePix()">Salvar Chave</button>
   </div>
 
   <div class="painel-bloco">
@@ -37,7 +37,7 @@
   </div>
 
   <div class="painel-bloco">
-    <button class="painel-botao-principal" [disabled]="!chavePix" (click)="abrirModal()">
+    <button type="button" class="painel-botao-principal"  (click)="abrirModal()">
       Solicitar Resgate via PIX
     </button>
   </div>
@@ -49,7 +49,7 @@
       <p><strong>{{ chavePix }}</strong></p>
       
       <div class="d-flex justify-content-around mt-3">
-        <button class="btn btn-success" (click)="confirmarResgatePix()">Confirmar</button>
+        <button  class="btn btn-success" (click)="confirmarResgatePix()">Confirmar</button>
         <button class="btn btn-secondary" (click)="fecharModalConfirmacao()">Cancelar</button>
       </div>
     </div>

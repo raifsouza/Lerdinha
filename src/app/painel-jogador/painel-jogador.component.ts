@@ -1,10 +1,8 @@
 import { Component, inject, OnInit, PLATFORM_ID, TemplateRef } from '@angular/core';
-import { UserService } from '../core/user.service'; 
-import { AuthService } from '../core/auth.service'; 
 import { FormsModule } from '@angular/forms';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-painel-jogador',
   imports: [CommonModule,FormsModule],
@@ -34,7 +32,7 @@ export class PainelJogadorComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (!token) return;
   
-    this.http.get('http://localhost:3000/usuarios/painel', {
+    this.http.get('${environment.apiUrl}/usuarios/painel', {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe((res: any) => {
       this.saldo = res.saldo;
@@ -52,7 +50,7 @@ export class PainelJogadorComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (!token) return;
   
-    this.http.patch('http://localhost:3000/usuarios/resgatar-pix', {}, {
+    this.http.patch('${environment.apiUrl}/usuarios/resgatar-pix', {}, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (res: any) => {
@@ -70,7 +68,7 @@ export class PainelJogadorComponent implements OnInit {
     const token = localStorage.getItem('token');
     if (!token) return;
   
-    this.http.patch('http://localhost:3000/usuarios/chave-pix', { chavePix: this.chavePix }, {
+    this.http.patch('${environment.apiUrl}/usuarios/chave-pix', { chavePix: this.chavePix }, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (res: any) => {
@@ -91,7 +89,7 @@ confirmarResgatePix(): void {
   const token = localStorage.getItem('token');
   if (!token) return;
 
-  this.http.post('http://localhost:3000/usuarios/resgatar-pix', {}, {
+  this.http.post('${environment.apiUrl}/usuarios/resgatar-pix', {}, {
     headers: { Authorization: `Bearer ${token}` }
   }).subscribe(() => {
     alert('Solicitação de resgate enviada com sucesso!');
@@ -112,7 +110,7 @@ salvarChavePix(): void {
     return;
   }
 
-  this.http.patch('http://localhost:3000/usuarios/chave-pix', 
+  this.http.patch('${environment.apiUrl}/usuarios/chave-pix', 
     { chavePix: this.chavePix }, 
     { headers: { Authorization: `Bearer ${token}` } }
   ).subscribe(() => {
@@ -125,7 +123,6 @@ salvarChavePix(): void {
 
 abrirModal() {
   this.exibirModalConfirmacao = true;
-  console.log("ESTOU AQUI!!!!");
 }
 
 fecharModalConfirmacao(){
