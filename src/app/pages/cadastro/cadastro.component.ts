@@ -39,7 +39,7 @@ export class CadastroComponent implements OnInit {
         dataNascimento: ['', [Validators.required]],
         password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(30)]],
         confirmPassword: ['', Validators.required],
-        cep: ['', Validators.pattern],
+        cep: ['',],
         terms: [false, Validators.requiredTrue]
       },
       { validators: this.validarSenhasIguais }

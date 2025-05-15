@@ -1,13 +1,17 @@
 <nav class="navbar">
-    <div class="logo">
-      <img src="assets/logo.png" alt="Jogo da Lerdinha" />
+  <div class="esquerda">
+    <span class="jogo-nome">Jogo da Lerdinha</span>
+  </div>
+
+  <div class="direita" *ngIf="isAuthenticated">
+    <span class="usuario" (click)="toggleMenu()">{{ nome }}</span>
+    <span class="saldo">Saldo: R$ {{ saldo.toFixed(2) }}</span>
+
+    <div class="menu" *ngIf="menuAberto">
+      <ul>
+        <li (click)="irParaPainel()">Painel do Jogador</li>
+        <li (click)="logout()">Sair</li>
+      </ul>
     </div>
-    <div class="user-info">
-      <span class="saldo">Saldo: R$ {{ saldoFormatado }}</span>
-      <img [src]="userFoto" 
-           alt="Usuário" 
-           class="user-icon"
-           (error)="substituirFotoUsuario()" />
-    </div>
-  </nav>
-  
+  </div>
+</nav>

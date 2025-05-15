@@ -1,47 +1,57 @@
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #1d9248;
-    padding: 10px 20px;
-    color: white;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
-  
-  .logo img {
-    height: 40px;
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1d9248;
+  color: white;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+  position: relative;
+}
 
-  .user-icon {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    border: 2px solid white;
-    object-fit: cover;
-  }
-  
-  
-  .saldo {
-    font-size: 1rem;
-  }
-  
-  .user-icon {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    border: 2px solid white;
-  }
-  
+.esquerda {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.direita {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+.usuario {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.saldo {
+  font-size: 14px;
+}
+
+.menu {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  background-color: #333;
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 6px 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.menu li:hover {
+  background-color: #444;
+}
