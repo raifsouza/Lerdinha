@@ -4,12 +4,11 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CpfValidationService } from '../../services/cpf-validation.service';
 import { provideNgxMask, NgxMaskDirective } from 'ngx-mask';
-import { LucideAngularModule, Eye, EyeOff } from 'lucide-angular';
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgxMaskDirective, LucideAngularModule, ],
+  imports: [CommonModule, ReactiveFormsModule, NgxMaskDirective ],
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -30,8 +29,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit(): void {
     this.cadastroForm = this.fb.group(
       {
-        primeiroNome: ['', [Validators.required, Validators.minLength(2)]],
-        ultimoNome: ['', [Validators.required, Validators.minLength(2)]],
+        nomeCompleto: ['', [Validators.required, Validators.minLength(8)]],
         cpf: ['', Validators.required],
         genero: ['', Validators.required],
         telefone: ['', Validators.required],
@@ -46,20 +44,9 @@ export class CadastroComponent implements OnInit {
     );
   }
 
-  abrirModal(event: Event) {
-    event.preventDefault();
-    this.mostrarModal = true;
-  }
-
-  fecharModal() {
-    this.mostrarModal = false;
-  }
-
-  icons = { Eye, EyeOff };
-
   constructor(private fb: FormBuilder, private CpfValidationService: CpfValidationService) {
     this.cadastroForm = this.fb.group({
-      cpf: ['', [Validators.required, Validators.pattern(/^\d{3}\.\d{3}\.\d{3}-\d{2}$/)]],
+      cpf: ['', [Validators.required, Validators.pattern]],
       dataNascimento: ['', [Validators.required]],
 
     })
@@ -95,15 +82,7 @@ export class CadastroComponent implements OnInit {
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
-  botaoVisibilidadeSenha(): void {
-    this.showPassword = !this.showPassword;
-  }
-
-  botaoVisibilidadeConfirmacaoSenha(): void {
-    this.showConfirmPassword = !this.showConfirmPassword;
-  }
-
-  onSubmit(): void {
+  login(): void {
     if (this.cadastroForm.valid) {
       console.log('Form submitted:', this.cadastroForm.value);
       alert('Cadastro realizado com sucesso!');
