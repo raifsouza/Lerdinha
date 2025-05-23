@@ -4,7 +4,7 @@
       <h1 class="card-title">Cadastre-se</h1>
     </div>
 
-    <form (ngSubmit)="login()" [formGroup]="cadastroForm">
+    <form [formGroup]="cadastroForm" (ngSubmit)="login()">
       <!-- Nome -->
       <div class="form-group">
         <label class="form-label" for="nomeCompleto">Nome Completo<span class="required-star">*</span></label>
@@ -14,7 +14,9 @@
         class="form-control"
         formControlName="nomeCompleto"
         placeholder="Digite seu nome">
-        <!-- <p class="error-message" *ngIf="isFieldInvalid('firstName')">Nome é obrigatório.</p> -->
+        <div *ngIf="cadastroForm.get('nomeCompleto')?.invalid && cadastroForm.get('nomeCompleto')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('nomeCompleto')?.errors?.['required']">Campo obrigatório.</small>
+        </div>
       </div>
 
       <!-- CPF -->
@@ -28,8 +30,10 @@
         mask="000.000.000-00"
         placeholder ="000.000.000-00"
         type="text"
-        [dropSpecialCharacters]="true"
-        (blur)="validarCpf()">
+        >
+        <div *ngIf="cadastroForm.get('cpf')?.invalid && cadastroForm.get('cpf')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('cpf')?.errors?.['required']">Campo obrigatório.</small>
+        </div>
       </div>
 
       <!-- Data de Nascimento -->
@@ -37,11 +41,12 @@
         <label class="form-label" for="dataNascimento">Data de Nascimento <span class="required-star">*</span></label>
         <input
         id="dataNascimento"
-        type="date"
+        type="text"
         formControlName="dataNascimento"
         class="form-control"
-        (blur)="validarDataNascimento()"
-        mask="d0/M0/0000" />
+        [dropSpecialCharacters]="false"
+        placeholder="00/00/0000"
+        mask="00/00/0000" />
         <div *ngIf="cadastroForm.get('dataNascimento')?.invalid && cadastroForm.get('dataNascimento')?.touched" class="text-danger">
           <small *ngIf="cadastroForm.get('dataNascimento')?.errors?.['required']">Campo obrigatório.</small>
           <small *ngIf="cadastroForm.get('dataNascimento')?.errors?.['invalidDate']">Data inválida.</small>
@@ -59,9 +64,12 @@
           <option value="outro">Outro</option>
           <option value="naoresponder">Prefiro não informar</option>
         </select>
+        <div *ngIf="cadastroForm.get('genero')?.invalid && cadastroForm.get('genero')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('genero')?.errors?.['required']">Campo obrigatório.</small>
+        </div>
       </div>
 
-      <!-- Celular -->
+      <!-- Telefone -->
       <div class="form-group">
         <label class="form-label" for="telefone">Celular com DDD <span class="required-star">*</span></label>
         <input type="text"
@@ -69,8 +77,10 @@
         class="form-control"
         formControlName="telefone"
         placeholder="(00) 0 0000-0000"
-        mask="(00) 0 0000-0000"
-        dropSpecialCharacters]="true">
+        mask="(00) 0 0000-0000">
+        <div *ngIf="cadastroForm.get('telefone')?.invalid && cadastroForm.get('telefone')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('telefone')?.errors?.['required']">Campo obrigatório.</small>
+        </div>
       </div>
 
       <!-- Email -->
@@ -79,9 +89,12 @@
         <input
         type="email"
         id="email"
-        lass="form-control"
+        class="form-control"
         formControlName="email"
         placeholder="Insira seu e-mail">
+        <div *ngIf="cadastroForm.get('email')?.invalid && cadastroForm.get('email')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('email')?.errors?.['required']">Campo obrigatório.</small>
+        </div>
       </div>
 
       <!-- Senha -->
@@ -93,8 +106,12 @@
           id="password" class="form-control"
           formControlName="password"
           placeholder="Digite sua senha">
-          <!-- <button type="button" class="password-toggle" (click)="botaoVisibilidadeSenha()">
+          <!-- <button type="button" (click)="showPassword = !showPassword" class="password-toggle">
+            {{ showPassword ? 'Ocultar' : 'Mostrar' }}
           </button> -->
+        </div>
+        <div *ngIf="cadastroForm.get('password')?.invalid && cadastroForm.get('password')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('password')?.errors?.['required']">Campo obrigatório.</small>
         </div>
       </div>
 
@@ -107,8 +124,12 @@
           id="confirmPassword" class="form-control"
           formControlName="confirmPassword"
           placeholder = "Digite a senha novamente">
-          <!-- <button type="button" class="password-toggle" (click)="botaoVisibilidadeConfirmacaoSenha()">
-          </button> -->
+        <!-- <button type="button" (click)="showPassword = !showPassword" class="password-toggle">
+          {{ showPassword ? 'Ocultar' : 'Mostrar' }}
+        </button> -->
+        </div>
+        <div *ngIf="cadastroForm.get('confirmPassword')?.invalid && cadastroForm.get('confirmPassword')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('confirmPassword')?.errors?.['required']">Campo obrigatório.</small>
         </div>
         <p class="error-message" *ngIf="cadastroForm.hasError('passwordMismatch')">As senhas não coincidem.</p>
       </div>
@@ -121,19 +142,14 @@
         formControlName="terms">
         <label for="terms">Concordo com todos os <a href="#">Termos e Condições</a> e <a href="#">Diretrizes de Privacidade</a>. Declaro, ainda, ser maior de 18 anos.</label>
         <!-- <label for="terms">Concordo com todos os <a href="#" (click)="abrirModal($event)">Termos e Condições</a> e <a href="#">Diretrizes de Privacidade</a>. Declaro, ainda, ser maior de 18 anos.</label> -->
+        <div *ngIf="cadastroForm.get('terms')?.invalid && cadastroForm.get('terms')?.touched" class="text-danger">
+          <small *ngIf="cadastroForm.get('terms')?.errors?.['required']">Você precisa concordar com os Termos e Condições de Serviços e Diretrizes de Privacidade.</small>
+        </div>
       </div>
 
-      <!-- Modal Termos -->
-      <!-- <div class="modal" *ngIf="mostrarModal">
-        <div clas="modal-content">
-          <span class="fechar" (click)="fecharModal()">X</span>
-          <h2>Termos e Condições</h2>
-          <p>Colocar os termos aqui :p</p>
-        </div>
-      </div> -->
-
       <!-- Botão de Envio -->
-      <button type="submit" class="submit-button" [disabled]="cadastroForm.invalid">Cadastrar</button>
+      <!-- <button type="submit" class="submit-button" [disabled]="cadastroForm.invalid">Cadastrar</button> -->
+      <button type="submit" class="submit-button">Cadastrar</button>
 
       <!-- Redirecionamento para tela de Login-->
       <div class="login-container">
